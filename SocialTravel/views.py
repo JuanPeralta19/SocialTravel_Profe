@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from SocialTravel.models import Post
-from SocialTravel.forms import PostForm
+from SocialTravel.models import post
+from SocialTravel.forms import postForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 def index(request):
     return render(request, "SocialTravel/index.html")
@@ -8,8 +9,8 @@ def index(request):
 
 def mostrar_posts(request):
     context = {
-         "posts": Post.objects.all(),
-         "form": PostForm(),
+         "posts": post.objects.all(),
+         "form": postForm(),
          }
 
     
@@ -17,11 +18,11 @@ def mostrar_posts(request):
 
 
 def agregar_post(request):
-    post_form = PostForm(request.POST)
+    post_form = postForm(request.POST)
     post_form.save()
     context = {
-         "posts": Post.objects.all(),
-         "form": PostForm(),
+         "posts": post.objects.all(),
+         "form": postForm(),
          }
 
     return render(request, "SocialTravel/admin_post.html", context)
@@ -29,5 +30,8 @@ def agregar_post(request):
 
 def buscar_post(request):
     criterio = request.GET.get("criterio")
-    context = { "posts": Post.objects.filter(carousel_caption_title__icontains=criterio).all()}
+    context = { "posts": post.objects.filter(carousel_caption_title__icontains=criterio).all()}
     return render(request, "SocialTravel/admin_post.html", context)
+
+class PostList(ListView):
+    model = post

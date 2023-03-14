@@ -1,7 +1,7 @@
 from django import forms
-from SocialTravel.models import Post
+from SocialTravel.models import post
 
-class PostForm(forms.ModelForm):
+class postForm(forms.ModelForm):
     class Meta:
-        model = Post
+        model = post
         fields = '__all__'
