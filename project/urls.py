@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from SocialTravel.views import (index, PostList, PostDetail, PostUpdate, PostDelete, PostCreate,
-                                PostSearch, Login, SignUp, Logout)
+from SocialTravel.views import (index, PostList, PostDetail, PostUpdate, PostDelete,
+                                PostCreate, PostMineList, PostSearch, Login, SignUp, Logout)
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', index, name="index"),
@@ -30,5 +32,9 @@ urlpatterns = [
     path('login/', Login.as_view(),name = "login"),
     path('signup/', SignUp.as_view(), name = "signup"),
     path('logout/', Logout.as_view(), name = "logout"),
+    path('Post/List/Mine',PostMineList.as_view(), name = "post-mine"),
+
     
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

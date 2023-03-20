@@ -3,10 +3,12 @@
 {% load static %}
 
 {% block principal %}
-<ul>
-    <li>{{ post.carousel_caption_title }} - {{ post.heading}}
-        <a href="{% url 'post-update' post.id %}">Actualizar</a>
-        <a href="{% url 'post-delete' post.id %}">Borrar</a>
-    </li>
-</ul>
+<h1>Detalles del viaje:</h1>
+<div class="d-flex justify-content-center">
+    <div class="col col-8" style="text-align: center;">
+        <h1 class="mt-5">{{ post.carousel_caption_title }}</h1>
+        <p><img height="256px" src="{{post.imagen_url}}"></p>
+        <p class="lead">{{ post.description}}</p>
+    </div>
+</div>
 {% endblock %}

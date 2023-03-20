@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block principal %}
-
-<form method="post">
+<h1>Crea tu post:</h1>
+<form method="post" enctype = "multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="Actualizar">
+    <input type="submit" value="Crear">
 </form>
 
 
